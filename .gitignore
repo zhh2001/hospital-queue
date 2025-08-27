@@ -1,0 +1,41 @@
+# 编译产物
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.out
+dist/
+
+# Go模块
+go.work
+go.work.sum
+vendor/
+
+# 数据库文件
+*.db
+*.db-shm
+*.db-wal
+database/*.db
+
+# 日志与缓存
+*.log
+logs/
+cache/
+
+# 编辑器与IDE配置
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*.swo
+.DS_Store
+
+# 环境变量与敏感信息
+.env
+.env.*
+!/.env.example
+
+# 临时文件
+tmp/
+temp/
