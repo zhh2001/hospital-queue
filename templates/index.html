@@ -2,9 +2,81 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
-    <title>医院叫号系统</title>
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+<div class="app">
+    <header class="card header">
+        <span class="item datetime">{{ .datetime }}</span>
+        <span class="item os">Server OS: {{ .os }}</span>
+        <span class="item arch">Arch: {{ .arch }}</span>
+    </header>
 
+    <section class="card form">
+        <div class="item">
+            患者姓名：🙍<input type="text" name="name" id="name" placeholder="请输入姓名"/>
+        </div>
+        <div class="item">
+            患者手机号：📱<input type="text" name="phone" id="phone" placeholder="请输入11位手机号码"/>
+        </div>
+        <div class="item">
+            诊室号：🧑‍⚕️<input type="number" name="department" id="department" value="0"/>
+        </div>
+        <div class="item">
+            <button type="button" id="newQueueButton">取号</button>
+        </div>
+    </section>
+
+    <section class="card queue">
+        <table width="100%">
+            <thead>
+            <tr>
+                <th>操作</th>
+                <th>状态</th>
+                <th>编号</th>
+                <th>患者</th>
+                <th>电话</th>
+                <th>诊室</th>
+                <th>前面剩余人数</th>
+                <th>取号时间</th>
+            </tr>
+            </thead>
+            <tbody id="queues">
+            <tr>
+                <td>
+                    <button type="button" class="callBtn">叫号</button>
+                </td>
+                <td>未叫号</td>
+                <td>V024</td>
+                <td>Tony</td>
+                <td>166 8888 8888</td>
+                <td>4</td>
+                <td>1</td>
+                <td>2025-08-27 22:31:31</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" class="callBtn">叫号</button>
+                </td>
+                <td>未叫号</td>
+                <td>V025</td>
+                <td>Anny</td>
+                <td>166 6666 8888</td>
+                <td>3</td>
+                <td>0</td>
+                <td>2025-08-27 22:32:11</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="empty-message" id="emptyMessage">暂无等待患者</div>
+    </section>
+
+    <footer>
+        Copyright <span class="copyright">&copy;</span> 2025-present <a href="https://github.com/zhh2001" target="_blank">Howard Zhang</a>.
+        All Rights Reserved.
+    </footer>
+</div>
+<script src="/static/js/main.js"></script>
 </body>
 </html>

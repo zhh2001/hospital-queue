@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #EEE;
+    font-family: "SimSun";
+}
+
+.hidden {
+    display: none;
+}
+
+.gray {
+    color: gray;
+}
+
+.app {
+    min-width: 960px;
+    max-width: 1440px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.card {
+    margin-top: 24px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 36px 24px;
+}
+
+.header .item {
+    margin-right: 40px;
+}
+
+.form {
+    display: relative;
+}
+
+.form .item {
+    margin-right: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.form .item input {
+    margin-left: 4px;
+    padding: 4px 8px;
+    height: 24px;
+    border-radius: 8px;
+}
+
+.form .item input#department {
+    width: 50px;
+}
+
+.form .item button {
+    margin-left: 40px;
+    cursor: pointer;
+    padding: 8px 24px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.form .item button:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+.queue table th {
+    padding: 0 0 16px 0;
+    text-align: center;
+}
+
+.queue table tr td {
+    padding: 4px 0;
+    text-align: center;
+}
+
+.queue table tr td button {
+    margin: 0 4px;
+    cursor: pointer;
+    padding: 4px 16px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.form .item button:hover {
+    color: black;
+}
+
+.queue table tr td button.callBtn {
+    background-color: green;
+}
+
+.queue table tr td button.del {
+    background-color: red;
+}
+
+.queue table tr td button.call:hover {
+    background-color: lightgreen;
+}
+
+.queue table tr td button.del:hover {
+    background-color: pink;
+}
+
+.queue .empty-message {
+    padding-top: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: green;
+}
+
+footer {
+    padding: 20px 0;
+    font-size: 15px;
+    text-align: center;
+}
+
+footer .copyright {
+    font-size: 24px;
+    vertical-align: middle;
+}
