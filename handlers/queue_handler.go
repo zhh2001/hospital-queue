@@ -93,3 +93,24 @@ func CreateQueueHandler(c *gin.Context) {
 
 	c.JSON(http.StatusOK, newQueue)
 }
+
+// CallQueueHandler 新增排队号码
+func CallQueueHandler(c *gin.Context) {
+	ID := c.PostForm("id")
+	if ID == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "数据ID不能为空"})
+		return
+	}
+	patientID, err := strconv.Atoi(ID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	patient, err := service.CallQueue(uint(patientID))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, patient)
+}

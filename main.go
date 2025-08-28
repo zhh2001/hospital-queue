@@ -25,7 +25,9 @@ func main() {
 
 	group := router.Group("/queue")
 	{
+		group.GET("/", handlers.GetAllQueuesHandler)
 		group.POST("/new", handlers.CreateQueueHandler)
+		group.POST("/call", handlers.CallQueueHandler)
 	}
 
 	srv := &http.Server{
