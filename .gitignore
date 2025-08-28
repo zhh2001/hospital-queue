@@ -17,6 +17,7 @@ vendor/
 *.db-shm
 *.db-wal
 database/*.db
+data/
 
 # 日志与缓存
 *.log
