@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 	"os"
 	"path/filepath"
@@ -118,4 +119,37 @@ func CreateNewQueue(name string, phone string, department uint) (*models.Patient
 	}
 
 	return &newQueue, nil
+}
+
+// CallQueue 叫号
+func CallQueue(id uint) (*models.Patient, error) {
+	queues, err := readAllQueues()
+	if err != nil {
+		return nil, err
+	}
+
+	// 查找被叫号的数据记录
+	var patient *models.Patient
+	for _, q := range queues {
+		if q.ID == id {
+			// 更新状态为已叫号
+			q.Status = 1
+			q.UpdateAt = time.Now()
+			patient = &q
+		}
+	}
+
+	if patient == nil {
+		return nil, errors.New("数据不存在")
+	}
+
+	if err := CallVoice(patient.Name, patient.Department); err != nil {
+		return nil, err
+	}
+
+	if err := saveQueues(queues); err != nil {
+		return nil, err
+	}
+
+	return patient, nil
 }
