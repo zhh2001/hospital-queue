@@ -46,8 +46,8 @@ func init() {
 	}
 }
 
-// 读取所有叫号数据
-func readAllQueues() ([]models.Patient, error) {
+// ReadAllQueues 读取所有叫号数据
+func ReadAllQueues() ([]models.Patient, error) {
 	mutex.Lock()
 	defer mutex.Unlock()
 
@@ -79,7 +79,7 @@ func saveQueues(queues []models.Patient) error {
 
 // CreateNewQueue 新增排队号码
 func CreateNewQueue(name string, phone string, department uint) (*models.Patient, error) {
-	queues, err := readAllQueues()
+	queues, err := ReadAllQueues()
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func CreateNewQueue(name string, phone string, department uint) (*models.Patient
 	// 计算当前最大号码
 	var maxNumber uint = 0
 	for _, q := range queues {
-		if q.Department == department && q.Number > maxNumber {
+		if q.Number > maxNumber {
 			maxNumber = q.Number
 		}
 	}
@@ -123,7 +123,7 @@ func CreateNewQueue(name string, phone string, department uint) (*models.Patient
 
 // CallQueue 叫号
 func CallQueue(id uint) (*models.Patient, error) {
-	queues, err := readAllQueues()
+	queues, err := ReadAllQueues()
 	if err != nil {
 		return nil, err
 	}

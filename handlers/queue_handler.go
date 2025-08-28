@@ -1,13 +1,14 @@
 package handlers
 
 import (
-	"hospital-queue/service"
 	"net/http"
 	"runtime"
 	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+
+	"hospital-queue/service"
 )
 
 // MainHandler 渲染主页面
@@ -24,6 +25,39 @@ func MainHandler(c *gin.Context) {
 func IndexHandler(c *gin.Context) {
 	c.Request.URL.Path = "/"
 	MainHandler(c)
+}
+
+// GetAllQueuesHandler 获取队列信息
+func GetAllQueuesHandler(c *gin.Context) {
+	patients, err := service.ReadAllQueues()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": err.Error(),
+		})
+	}
+
+	queues := make([]map[string]any, 0, len(patients))
+	for _, patient := range patients {
+		remaining := 0
+		for _, p := range patients {
+			if p.Department == patient.Department && p.Status == 0 && p.Number < patient.Number {
+				remaining++
+			}
+		}
+
+		queues = append(queues, map[string]any{
+			"id":         patient.ID,
+			"number":     patient.Number,
+			"name":       patient.Name,
+			"phone":      patient.Phone,
+			"department": patient.Department,
+			"status":     patient.Status,
+			"datetime":   patient.CreateAt.Format("2006-01-02 15:04:05"),
+			"remaining":  remaining,
+		})
+	}
+
+	c.JSON(http.StatusOK, queues)
 }
 
 // CreateQueueHandler 新增排队号码
