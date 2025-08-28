@@ -1,3 +1,48 @@
+function getDepartmentID() {
+    let input;
+    let num;
+
+    do {
+        // 显示提示框，获取用户输入
+        input = prompt('请输入你的诊室号：', '');
+
+        // 如果用户取消输入，返回 null
+        if (input === null) {
+            alert('必须输入！');
+            num = null;
+            continue;
+        }
+
+        // 移除首尾空格
+        input = input.trim();
+
+        // 验证是否为正整数：
+        // 1. 不为空
+        // 2. 是数字
+        // 3. 是整数
+        // 4. 大于 0
+        if (input === '') {
+            alert('输入不能为空，请重新输入！');
+            num = null;
+        } else if (isNaN(input)) {
+            alert('请输入有效的数字！');
+            num = null;
+        } else {
+            num = Number(input);
+            if (!Number.isInteger(num) || num <= 0) {
+                alert('请输入一个大于 0 的整数！');
+                num = null;
+            }
+        }
+    } while (num === null); // 直到输入有效才退出循环
+
+    return num;
+}
+
+// 使用示例
+const departmentID = getDepartmentID();
+console.log("departmentID:", departmentID);
+
 const queues = document.getElementById('queues');
 const emptyMessage = document.getElementById('emptyMessage');
 
@@ -38,7 +83,7 @@ function loadData() {
                     const queueItem = document.createElement('tr');
                     queueItem.innerHTML = `
                         <td>
-                            <button type="button" class="callBtn" data-id=${data[i].id}>叫号</button>
+                            <button type="button" class=${data[i].department == departmentID ? "callBtn" : "callBtn hidden"} data-id=${data[i].id}>叫号</button>
                         </td>
                         <td class=${data[i].status === 0 ? "" : "gray"}>${data[i].status === 0 ? "未叫号" : "已叫号"}</td>
                         <td>${data[i].number}</td>

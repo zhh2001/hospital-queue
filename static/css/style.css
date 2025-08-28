@@ -76,6 +76,7 @@ body {
 .queue table tr td {
     padding: 4px 0;
     text-align: center;
+    height: 32px;
 }
 
 .queue table tr td button {
