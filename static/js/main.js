@@ -53,6 +53,34 @@ const department = document.getElementById('department');
 const newQueueButton = document.getElementById('newQueueButton');
 newQueueButton.addEventListener('click', createNewQueue);
 
+function formatDateTime() {
+    const now = new Date(); // 获取当前系统时间
+
+    // 补零函数：确保数字为两位数（如 9 → "09"）
+    const padZero = (num) => num.toString().padStart(2, '0');
+
+    // 提取年、月、日、时、分、秒
+    const year = now.getFullYear(); // 年份（如 2025）
+    const month = padZero(now.getMonth() + 1); // 月份（0-11，需+1）
+    const day = padZero(now.getDate()); // 日期（1-31）
+    const hours = padZero(now.getHours()); // 小时（0-23，24小时制）
+    const minutes = padZero(now.getMinutes()); // 分钟（0-59）
+    const seconds = padZero(now.getSeconds()); // 秒（0-59）
+
+    // 拼接成目标格式
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+function updateDateTime() {
+    const datetimeElement = document.getElementById('datetime');
+    if (datetimeElement) { // 避免 DOM 未加载时报错
+        datetimeElement.textContent = formatDateTime();
+    }
+}
+
+updateDateTime(); // 首次加载时直接渲染，避免等待1秒
+setInterval(updateDateTime, 1000); // 1000ms = 1秒，定时更新
+
 loadData();
 setInterval(loadData, 5000);
 
