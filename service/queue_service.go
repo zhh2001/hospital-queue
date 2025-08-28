@@ -130,11 +130,11 @@ func CallQueue(id uint) (*models.Patient, error) {
 
 	// 查找被叫号的数据记录
 	var patient *models.Patient
-	for _, q := range queues {
+	for i, q := range queues {
 		if q.ID == id {
 			// 更新状态为已叫号
-			q.Status = 1
-			q.UpdateAt = time.Now()
+			queues[i].Status = 1
+			queues[i].UpdateAt = time.Now()
 			patient = &q
 		}
 	}
