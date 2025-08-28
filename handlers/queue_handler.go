@@ -52,6 +52,7 @@ func GetAllQueuesHandler(c *gin.Context) {
 			"phone":      patient.Phone,
 			"department": patient.Department,
 			"status":     patient.Status,
+			"call_count": patient.CallCount,
 			"datetime":   patient.CreateAt.Format("2006-01-02 15:04:05"),
 			"remaining":  remaining,
 		})

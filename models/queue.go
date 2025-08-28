@@ -9,6 +9,7 @@ type Patient struct {
 	Phone      string    `json:"phone"`      // 手机号码
 	Department uint      `json:"department"` // 诊室号
 	Status     uint      `json:"status"`     // 0:等待，1:已叫号，2:过号
+	CallCount  uint      `json:"call_count"` // 叫号次数
 	CreateAt   time.Time `json:"create_at"`  // 创建时间
 	UpdateAt   time.Time `json:"update_at"`  // 更新时间
 }

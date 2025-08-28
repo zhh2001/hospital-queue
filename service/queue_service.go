@@ -108,6 +108,7 @@ func CreateNewQueue(name string, phone string, department uint) (*models.Patient
 		Phone:      phone,
 		Department: department,
 		Status:     0,
+		CallCount:  0,
 		CreateAt:   time.Now(),
 		UpdateAt:   time.Now(),
 	}
@@ -134,6 +135,7 @@ func CallQueue(id uint) (*models.Patient, error) {
 		if q.ID == id {
 			// 更新状态为已叫号
 			queues[i].Status = 1
+			queues[i].CallCount++
 			queues[i].UpdateAt = time.Now()
 			patient = &q
 		}

@@ -111,7 +111,7 @@ function loadData() {
                     const queueItem = document.createElement('tr');
                     queueItem.innerHTML = `
                         <td>
-                            <button type="button" class=${data[i].department == departmentID ? "callBtn" : "callBtn hidden"} data-id=${data[i].id}>叫号</button>
+                            <button type="button" class=${data[i].department == departmentID ? "callBtn" : "callBtn hidden"} data-id=${data[i].id}>叫号 (${data[i].call_count})</button>
                         </td>
                         <td class=${data[i].status === 0 ? "" : "gray"}>${data[i].status === 0 ? "未叫号" : "已叫号"}</td>
                         <td>${data[i].number}</td>
