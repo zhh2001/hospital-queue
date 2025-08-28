@@ -72,7 +72,7 @@ function loadData() {
 
                 // 如果没有等待队列，显示提示信息
                 if (data.length === 0) {
-                    queueItemsEl.innerHTML = "";
+                    queues.innerHTML = "";
                     emptyMessage.className = "empty-message";
                     return;
                 }
